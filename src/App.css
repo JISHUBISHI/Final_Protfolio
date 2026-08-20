@@ -1,0 +1,69 @@
+/* Scroll Reveal Animations */
+
+.reveal-item {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-item.reveal-active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered Delays for Grid Elements */
+.achievements-grid > *:nth-child(1), .skills-categories > *:nth-child(1), .projects-grid > *:nth-child(1) { transition-delay: 0.1s; }
+.achievements-grid > *:nth-child(2), .skills-categories > *:nth-child(2), .projects-grid > *:nth-child(2) { transition-delay: 0.2s; }
+.achievements-grid > *:nth-child(3), .skills-categories > *:nth-child(3), .projects-grid > *:nth-child(3) { transition-delay: 0.3s; }
+.achievements-grid > *:nth-child(4), .skills-categories > *:nth-child(4), .projects-grid > *:nth-child(4) { transition-delay: 0.4s; }
+.achievements-grid > *:nth-child(5), .skills-categories > *:nth-child(5) { transition-delay: 0.5s; }
+.achievements-grid > *:nth-child(6) { transition-delay: 0.6s; }
+
+/* Elements explicitly tagged to not animate or animate differently if needed */
+.hero-content {
+  transition-delay: 0.1s;
+}
+
+.hero-image-container {
+  transition-delay: 0.3s;
+}
+
+/* Visual refinement and blog experience */
+#particles-canvas { position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: .55; }
+main, .navbar, .footer { position: relative; z-index: 1; }
+.hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 76% 42%, rgba(6,182,212,.10), transparent 23%), radial-gradient(circle at 18% 28%, rgba(139,92,246,.12), transparent 28%); pointer-events: none; }
+.hero-content { animation: hero-in .85s cubic-bezier(.16,1,.3,1) both; }
+.hero-image-container { animation: image-in 1.1s cubic-bezier(.16,1,.3,1) .1s both, float 6s ease-in-out 1.1s infinite; }
+.hero-name span { background: linear-gradient(130deg, var(--accent-primary), var(--accent-tertiary)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+.hero-kicker { display: inline-flex; align-items: center; gap: 8px; margin-bottom: 1.25rem; color: var(--text-secondary); font-size: .78rem; font-weight: 650; letter-spacing: .08em; text-transform: uppercase; }
+.hero-kicker-dot { width: 8px; height: 8px; border-radius: 50%; background: #34d399; box-shadow: 0 0 0 5px rgba(52,211,153,.12); animation: status-pulse 2s ease-in-out infinite; }
+.hero-badge-float { animation: badge-float 5s ease-in-out infinite; }
+.hero-badge-float:last-child { animation-delay: -2.5s; }
+.section { overflow: clip; }
+.section::before { content: ''; position: absolute; width: 320px; height: 320px; border-radius: 50%; background: radial-gradient(circle, rgba(99,102,241,.07), transparent 67%); filter: blur(8px); right: -160px; top: 12%; pointer-events: none; }
+.project-card, .skill-category-card, .achievement-card { isolation: isolate; }
+.project-card::after, .skill-category-card::after, .achievement-card::after { content: ''; position: absolute; inset: 0; z-index: -1; opacity: 0; background: radial-gradient(340px circle at var(--mouse-x, 50%) var(--mouse-y, 0%), rgba(99,102,241,.14), transparent 42%); transition: opacity .35s ease; }
+.project-card:hover::after, .skill-category-card:hover::after, .achievement-card:hover::after { opacity: 1; }
+.blog-section { background: linear-gradient(180deg, transparent, rgba(99,102,241,.035), transparent); }
+.blog-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; }
+.blog-card { position: relative; display: flex; flex-direction: column; min-height: 350px; padding: 1.75rem; overflow: hidden; }
+.blog-card-glow { position: absolute; width: 200px; height: 200px; border-radius: 50%; top: -105px; right: -90px; background: radial-gradient(circle, rgba(6,182,212,.22), transparent 68%); transition: transform .55s ease; }
+.blog-card:hover .blog-card-glow { transform: scale(1.4); }
+.blog-card-topline { display: flex; justify-content: space-between; align-items: center; gap: .75rem; position: relative; }
+.blog-category { color: var(--text-accent); background: rgba(99,102,241,.12); border: 1px solid rgba(129,140,248,.24); border-radius: 999px; padding: .32rem .7rem; font-size: .7rem; font-weight: 750; letter-spacing: .06em; text-transform: uppercase; }
+.blog-read-time { display: inline-flex; align-items: center; gap: .32rem; color: var(--text-muted); font-size: .78rem; white-space: nowrap; }
+.blog-index { margin: 2.6rem 0 1rem; color: rgba(129,140,248,.65); font-family: var(--font-mono); font-size: .78rem; letter-spacing: .12em; }
+.blog-card h3 { max-width: 18ch; font-size: 1.38rem; line-height: 1.26; }
+.blog-card p { margin-top: .85rem; color: var(--text-secondary); font-size: .92rem; line-height: 1.75; }
+.blog-read-button { display: inline-flex; align-items: center; gap: .38rem; width: fit-content; margin-top: auto; padding: 1rem 0 0; border: 0; background: transparent; color: var(--text-primary); cursor: pointer; font: inherit; font-size: .88rem; font-weight: 700; transition: color .2s ease, gap .2s ease; }
+.blog-read-button:hover { gap: .65rem; color: var(--accent-tertiary); }
+.blog-modal-container { animation: modal-in .35s cubic-bezier(.16,1,.3,1) both; }
+@keyframes hero-in { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes image-in { from { opacity: 0; transform: translateY(25px) scale(.96); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+@keyframes badge-float { 0%, 100% { translate: 0 0; } 50% { translate: 0 -9px; } }
+@keyframes status-pulse { 0%, 100% { box-shadow: 0 0 0 5px rgba(52,211,153,.12); } 50% { box-shadow: 0 0 0 9px rgba(52,211,153,.03); } }
+@keyframes modal-in { from { opacity: 0; transform: translateY(18px) scale(.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@media (max-width: 900px) { .blog-grid { grid-template-columns: 1fr; max-width: 620px; margin: 0 auto; } .blog-card { min-height: 285px; } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; } }
